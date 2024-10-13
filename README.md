@@ -1,2 +1,2 @@
-# continy-field-render
-Simpe HTML form renderer
+# Fields Render
+Simple server-side HTML output helper
