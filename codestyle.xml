@@ -1,9 +1,10 @@
-<code_scheme name="Project" version="173">
+<code_scheme name="PSR-12+" version="173">
   <PHPCodeStyleSettings>
     <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
     <option name="ALIGN_PHPDOC_PARAM_NAMES" value="true" />
     <option name="ALIGN_PHPDOC_COMMENTS" value="true" />
     <option name="ALIGN_ASSIGNMENTS" value="true" />
+    <option name="ALIGN_MATCH_ARM_BODIES" value="true" />
     <option name="COMMA_AFTER_LAST_PARAMETER" value="true" />
     <option name="COMMA_AFTER_LAST_CLOSURE_USE_VAR" value="true" />
     <option name="COMMA_AFTER_LAST_ARGUMENT" value="true" />

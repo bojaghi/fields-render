@@ -1,5 +1,5 @@
 <?php
-namespace ShoplicKr\Continy\Tests;
+namespace Bojaghi\Continy\Tests;
 use \WP_UnitTestCase;
 
 /**

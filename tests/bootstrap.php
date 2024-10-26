@@ -32,5 +32,21 @@ function _manually_load_plugin(): void {
 
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
+function getAccessibleMethod(string $className, string $methodName): ?\ReflectionMethod
+{
+    $method = null;
+
+    if (class_exists($className) && method_exists($className, $methodName)) {
+        try {
+            $reflection = new \ReflectionClass($className);
+            $method = $reflection->getMethod($methodName);
+            $method->setAccessible(true);
+        } catch (\ReflectionException $e) {
+        }
+    }
+
+    return $method;
+}
+
 // Start up the WP testing environment.
 require "{$_tests_dir}/includes/bootstrap.php";

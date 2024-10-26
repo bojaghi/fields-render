@@ -1,6 +1,6 @@
 <?php
 
-namespace ShoplicKr\Continy\Field;
+namespace Bojaghi\Continy\Field;
 
 class Render
 {

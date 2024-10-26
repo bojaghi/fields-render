@@ -4,9 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2b1fb8a2fdd53868be545ce83670b0c",
+    "content-hash": "e266a375bf69bfef605bf352700b5100",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "bojaghi/wp-tests",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/wp-tests.git",
+                "reference": "f6304fb23fdbc9eeb75de0ae0e47e21dbdfb322c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/wp-tests/zipball/f6304fb23fdbc9eeb75de0ae0e47e21dbdfb322c",
+                "reference": "f6304fb23fdbc9eeb75de0ae0e47e21dbdfb322c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "bin": [
+                "bin/wp-tests"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com"
+                }
+            ],
+            "description": "Re-usable WordPress unit test library setup",
+            "homepage": "https://github.com/bojaghi/wp-tests",
+            "support": {
+                "issues": "https://github.com/bojaghi/wp-tests/issues",
+                "source": "https://github.com/bojaghi/wp-tests/tree/1.0.1"
+            },
+            "time": "2024-10-26T14:49:27+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "2.0.0",
@@ -1697,45 +1736,6 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
-        },
-        {
-            "name": "shoplic-kr/wp-tests",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shoplic-kr/continy-tests.git",
-                "reference": "f6c55f5229f7d7c9d67f9c0c017afefafa4a1f12"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shoplic-kr/continy-tests/zipball/f6c55f5229f7d7c9d67f9c0c017afefafa4a1f12",
-                "reference": "f6c55f5229f7d7c9d67f9c0c017afefafa4a1f12",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0"
-            },
-            "bin": [
-                "bin/wp-tests"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "changwoo",
-                    "email": "changwoo@shoplic.kr"
-                }
-            ],
-            "description": "Re-usable WordPress unit test library setup",
-            "homepage": "https://github.com/shoplic-kr/wp-tests",
-            "support": {
-                "issues": "https://github.com/shoplic-kr/continy-tests/issues",
-                "source": "https://github.com/shoplic-kr/continy-tests/tree/1.0.2"
-            },
-            "time": "2024-10-13T08:27:45+00:00"
         },
         {
             "name": "theseer/tokenizer",
