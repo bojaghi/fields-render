@@ -1,24 +1,27 @@
 <?php
 
-namespace Bojaghi\Fields;
+namespace Bojaghi\FieldsRender;
 
 class Render
 {
     private static array $stack = [];
 
-    public static function checkbox(string $text, bool $checked, array|string $inputAttrs = ''): string
+    /**
+     * Output input[type="checkbox"]
+     *
+     * @param string       $label
+     * @param bool         $checked
+     * @param array|string $attrs
+     *
+     * @return string
+     */
+    public static function checkbox(string $label, bool $checked, array|string $attrs = ''): string
     {
-        $attrs            = $inputAttrs;
+        $attrs            = wp_parse_args($attrs);
         $attrs['checked'] = $checked;
         $attrs['type']    = 'checkbox';
-        $attrs['value']   = 'yes';
 
-        return self::label(['for' => $inputAttrs['id'] ?? ''], $text) . self::input($attrs);
-    }
-
-    public static function label(array|string $attrs = '', string $text = ''): string
-    {
-        return self::open('label', $attrs) . wp_kses($text, Filter::ksesAttrs('label')) . self::close();
+        return self::input($attrs) . self::label($label, ['for' => $attrs['id'] ?? '']);
     }
 
     /**
@@ -34,15 +37,16 @@ class Render
     }
 
     /**
-     * Create p.description and text
+     * Output label
      *
-     * @param string $text
+     * @param array|string $attrs
+     * @param string       $text
      *
      * @return string
      */
-    public static function description(string $text): string
+    public static function label(string $text = '', array|string $attrs = ''): string
     {
-        return self::open('p', 'class=description') . wp_kses($text, Filter::ksesAttrs('description')) . self::close();
+        return self::open('label', $attrs) . wp_kses($text, Filter::ksesAttrs('label__inner')) . self::close();
     }
 
     /**
@@ -67,6 +71,18 @@ class Render
         }
 
         return $tag ? "<$tag$attrs$e>" : '';
+    }
+
+    /**
+     * Close opened tag.
+     *
+     * @return string
+     */
+    public static function close(): string
+    {
+        $tag = array_pop(self::$stack);
+
+        return $tag ? "</$tag>" : '';
     }
 
     /**
@@ -143,13 +159,58 @@ class Render
         return $buffer ? (' ' . implode(' ', $buffer)) : '';
     }
 
-    public static function close(): string
+    public static function flushStack(): void
     {
-        $tag = array_pop(self::$stack);
-
-        return $tag ? "</$tag>" : '';
+        self::$stack = [];
     }
 
+    /**
+     * Get tag stack.
+     *
+     * @return array
+     */
+    public static function getStack(): array
+    {
+        return self::$stack;
+    }
+
+    /**
+     * Output input[type="radio"]
+     *
+     * @param string       $label
+     * @param bool         $checked
+     * @param array|string $attrs
+     *
+     * @return string
+     */
+    public static function radio(string $label, bool $checked, array|string $attrs = ''): string
+    {
+        $attrs            = wp_parse_args($attrs);
+        $attrs['checked'] = $checked;
+        $attrs['type']    = 'checkbox';
+
+        return self::input($attrs) . self::label($label, ['for' => $attrs['id'] ?? '']);
+    }
+
+    /**
+     * Output select - option tags
+     *
+     * @param array        $options
+     * @param string       $selected
+     * @param array|string $selectAttrs
+     *
+     * @return string
+     *
+     * @example select(
+     *     [
+     *         'value' => 'Label',
+     *         'OptGroup Label' => [
+     *            'value2' => 'Label2',
+     *         ],
+     *     ],
+     *     ....
+     * )
+     */
     public static function select(array $options, string $selected = '', array|string $selectAttrs = ''): string
     {
         $output = self::open('select', $selectAttrs);
@@ -159,17 +220,30 @@ class Render
                 $output .= self::open('optgroup', "label=$value");
                 foreach ($text as $inValue => $inText) {
                     $output .= self::open('option', ['value' => $inValue, 'selected' => $inValue == $selected]);
-                    $output .= esc_html($inText);
+                    $output .= wp_kses($inText, Filter::ksesAttrs('option__text'));
                     $output .= self::close();
                 }
                 $output .= self::close();
             } else {
                 $output .= self::open('option', ['value' => $value, 'selected' => $value == $selected]);
-                $output .= esc_html($text);
+                $output .= wp_kses($text, Filter::ksesAttrs('option__text'));
                 $output .= self::close();
             }
         }
 
         return $output . self::close();
+    }
+
+    /**
+     * Output textarea
+     *
+     * @param string       $text
+     * @param string|array $attrs
+     *
+     * @return string
+     */
+    public static function textarea(string $text = '', string|array $attrs = ''): string
+    {
+        return self::open('textarea', $attrs) . esc_textarea($text) . self::close();
     }
 }

@@ -1,9 +1,34 @@
 <?php
 
-namespace Bojaghi\Fields;
+namespace Bojaghi\FieldsRender;
 
 class Filter
 {
+    public static function canonAttrs(string|array $attrs, string|array $defaults = ''): array
+    {
+        $output   = [];
+        $attrs    = wp_parse_args($attrs);
+        $defaults = wp_parse_args($defaults);
+
+        foreach ($attrs as $key => $value) {
+            if (is_array($value)) {
+                $output[$key] = implode(' ', array_filter($value));
+            } elseif (is_string($value)) {
+                $output[$key] = implode(' ', preg_split('/\s+/', $value));
+            }
+        }
+
+        foreach($defaults as $key => $value) {
+            if (isset($output[$key])) {
+                $output[$key] .= " $value";
+            } else {
+                $output[$key] = $value;
+            }
+        }
+
+        return $output;
+    }
+
     /**
      * Generic attribute filter
      *
@@ -30,14 +55,30 @@ class Filter
      */
     public static function filterBool(string $key, mixed $value): array
     {
-        $key   = sanitize_key($key);
-        $value = (is_bool($value) && $value) || $key ? $key : '';
+        $key = sanitize_key($key);
+
+        if (is_bool($value)) {
+            if ($value) {
+                $value = $key;
+            } else {
+                $key   = '';
+                $value = '';
+            }
+        } elseif ($key) {
+            if (!empty($value)) {
+                $value = $key;
+            } else {
+                $key   = '';
+                $value = '';
+            }
+        }
 
         return [$key, $value];
     }
 
     /**
      * Sanitize CSS class
+     *
      * @param string $key
      * @param mixed  $value
      *
@@ -93,14 +134,14 @@ class Filter
     public static function ksesAttrs(string $objective = ''): array
     {
         return match ($objective) {
-            'label'       => [
+            'label__inner'   => [
                 'span' => [
                     'id'    => true,
                     'class' => true,
                     'style' => true,
                 ],
             ],
-            'description' => [
+            'option__text'   => [
                 'a'    => [
                     'id'     => true,
                     'class'  => true,
@@ -108,14 +149,43 @@ class Filter
                     'style'  => true,
                     'target' => true,
                 ],
-                'br'   => [],
                 'span' => [
                     'id'    => true,
                     'class' => true,
                     'style' => true,
                 ],
             ],
-            default       => [],
+            'p__description' => [
+                'a'    => [
+                    'id'     => true,
+                    'class'  => true,
+                    'href'   => true,
+                    'style'  => true,
+                    'target' => true,
+                ],
+                'code' => [
+                    'id'    => true,
+                    'class' => true,
+                    'style' => true,
+                ],
+                'br'   => [],
+                'hr'   => [
+                    'id'    => true,
+                    'class' => true,
+                    'style' => true,
+                ],
+                'pre'  => [
+                    'id'    => true,
+                    'class' => true,
+                    'style' => true,
+                ],
+                'span' => [
+                    'id'    => true,
+                    'class' => true,
+                    'style' => true,
+                ],
+            ],
+            default          => [],
         };
     }
 }

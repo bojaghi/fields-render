@@ -6,12 +6,12 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Bojaghi\\Fields\\": "src/"
+            "Bojaghi\\FieldsRender\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bojaghi\\Fields\\Tests\\": "tests/"
+            "Bojaghi\\FieldsRender\\Tests\\": "tests/"
         }
     },
     "authors": [

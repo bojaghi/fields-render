@@ -1,5 +1,5 @@
 <?php
-namespace Bojaghi\Continy\Tests;
+namespace Bojaghi\FieldsRender\Tests;
 use \WP_UnitTestCase;
 
 /**
