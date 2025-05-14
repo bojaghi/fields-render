@@ -68,24 +68,25 @@ class AdminCompound
              *   ...
              * </ul>
              */
-            R::open('ul', F::canonAttrs($attrs, ['style' => $style]));
+            $output .= R::open('ul', F::canonAttrs($attrs, ['style' => $style]));
 
             foreach ($choices as $val => $label) {
-                R::open('li');
+                $output .= R::open('li');
 
                 if (isset($attrs['id'])) {
                     $attrs['id'] .= '-' . $val;
                 }
+
                 if ('checkbox' === $style) {
-                    R::checkbox($label, $val == $value, $attrs);
+                    $output .= R::checkbox($label, $val == $value, $attrs);
                 } else {
-                    R::radio($label, $val == $value, $attrs);
+                    $output .= R::radio($label, $val == $value, $attrs);
                 }
 
-                R::close();
+                $output .= R::close();
             }
 
-            R::close();
+            $output .= R::close();
         } elseif ('select' === $style) {
             // Select: default. To allow multi-selection, add 'multiple' to $attrs.
             $output = R::select($choices, $value, $attrs);

@@ -1,0 +1,13 @@
+# CHANGELOG
+
+## 1.0.1
+
+2025-05-15
+
+- Fix `AdminCompound::choice()` empty output
+
+## 1.0.0
+
+2024-10-13
+
+Initial version
