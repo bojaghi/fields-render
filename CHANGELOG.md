@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.4
+
+2025-05-15
+
+- Update `AdminCompound::choice()` wrong attributes.
+
 ## 1.0.3
 
 2025-05-15

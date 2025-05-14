@@ -72,14 +72,19 @@ class AdminCompound
             foreach ($choices as $val => $label) {
                 $output .= R::open('li');
 
-                if (isset($attrs['id'])) {
-                    $attrs['id'] .= '-' . $val;
+                $itemAttrs = $attrs;
+                if (isset($itemAttrs['id'])) {
+                    $itemAttrs['id'] .= '-' . $val;
                 }
+                if (isset($itemAttrs['name']) && !str_ends_with($itemAttrs['name'], '[]')) {
+                    $itemAttrs['name'] .= '[]';
+                }
+                $itemAttrs['value'] = $val;
 
                 if ('checkbox' === $style) {
-                    $output .= R::checkbox($label, in_array($val, $value), $attrs);
+                    $output .= R::checkbox($label, in_array($val, $value), $itemAttrs);
                 } else {
-                    $output .= R::radio($label, in_array($val, $value), $attrs);
+                    $output .= R::radio($label, in_array($val, $value), $itemAttrs);
                 }
 
                 $output .= R::close();
