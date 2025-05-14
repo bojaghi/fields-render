@@ -1,10 +1,16 @@
 # CHANGELOG
 
+## 1.0.3
+
+2025-05-15
+
+- Fix `AdminCompound::choice()` wrong checked behavior.
+
 ## 1.0.2
 
 2025-05-15
 
-- Fix `AdminCompound::choice()` radio output
+- Fix `AdminCompound::choice()` radio output.
 - Fix wrong radio output.
 
 ## 1.0.1

@@ -56,6 +56,9 @@ class AdminCompound
             if ('horizontal' === $args['orientation']) {
                 $inlineStyle[] = 'display: flex;';
             }
+
+            $value = (array)$value;
+
             /* e.g.
              * <ul style="list-type: none; margin: 0; padding: 0;">
              *   <li>
@@ -74,9 +77,9 @@ class AdminCompound
                 }
 
                 if ('checkbox' === $style) {
-                    $output .= R::checkbox($label, $val == $value, $attrs);
+                    $output .= R::checkbox($label, in_array($val, $value), $attrs);
                 } else {
-                    $output .= R::radio($label, $val == $value, $attrs);
+                    $output .= R::radio($label, in_array($val, $value), $attrs);
                 }
 
                 $output .= R::close();
