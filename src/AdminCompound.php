@@ -52,13 +52,9 @@ class AdminCompound
         );
 
         if (in_array($style, ['checkbox', 'radio'], true)) {
-            $style = [
-                'list-type: none;',
-                'margin: 0;',
-                'padding: 0;',
-            ];
+            $inlineStyle = ['list-type: none;', 'margin: 0;', 'padding: 0;'];
             if ('horizontal' === $args['orientation']) {
-                $style[] = 'display: flex;';
+                $inlineStyle[] = 'display: flex;';
             }
             /* e.g.
              * <ul style="list-type: none; margin: 0; padding: 0;">
@@ -68,7 +64,7 @@ class AdminCompound
              *   ...
              * </ul>
              */
-            $output .= R::open('ul', F::canonAttrs($attrs, ['style' => $style]));
+            $output .= R::open('ul', F::canonAttrs($attrs, ['style' => $inlineStyle]));
 
             foreach ($choices as $val => $label) {
                 $output .= R::open('li');
