@@ -76,7 +76,7 @@ class AdminCompound
                 if (isset($itemAttrs['id'])) {
                     $itemAttrs['id'] .= '-' . $val;
                 }
-                if (isset($itemAttrs['name']) && !str_ends_with($itemAttrs['name'], '[]')) {
+                if (isset($itemAttrs['name']) && !str_ends_with($itemAttrs['name'], '[]') && 'checkbox' === $style) {
                     $itemAttrs['name'] .= '[]';
                 }
                 $itemAttrs['value'] = $val;

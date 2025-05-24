@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.5
+
+2025-05-24
+
+- Update `AdminCompound::choice()`: do not add parentheses when using style='radio'.
+
 ## 1.0.4
 
 2025-05-15
