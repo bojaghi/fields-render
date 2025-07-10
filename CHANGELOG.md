@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.6
+
+2025-07-11
+
+- Update `AdminCompound::choice()`: More careful decision of numeric arrays
+- Update `Filter::deepAttrFilter()`: Fix ignoring numbers
+
 ## 1.0.5
 
 2025-05-24

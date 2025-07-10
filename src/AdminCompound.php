@@ -40,7 +40,12 @@ class AdminCompound
     {
         $output = '';
 
-        if (wp_is_numeric_array($choices)) {
+        if (
+            wp_is_numeric_array($choices) &&
+            // Check if $choices is sequential
+            ($keys = array_keys($choices)) &&
+            (array_sum($keys) === (int)(count($keys) * (count($keys) - 1) * 0.5))
+        ) {
             $choices = array_combine($choices, $choices);
         }
 
