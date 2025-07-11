@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.7
+
+2025-07-11
+
+- Update `AdminCompound::choice()`: Remove pre-processing of indexed arrays. 
+
 ## 1.0.6
 
 2025-07-11
