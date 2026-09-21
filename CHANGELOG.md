@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.0.0
+
+2026-09-22
+
+- WordPress coding standard.
+- Remove AdminCompound.php, and AdminFormTable.php.
+
 ## 1.0.8
 
 2026-07-05
@@ -10,7 +17,7 @@
 
 2025-07-11
 
-- Update `AdminCompound::choice()`: Remove pre-processing of indexed arrays. 
+- Update `AdminCompound::choice()`: Remove pre-processing of indexed arrays.
 
 ## 1.0.6
 
